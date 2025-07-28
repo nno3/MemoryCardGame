@@ -6,11 +6,39 @@
     <link rel="stylesheet" type="text/css" href="memoryCardGame.css">
 </head>
 <body>
-    <h1>Memory Card game</h1>
-    <div class="grid-container"> </div>
-    <p> Score: <span class="score"></span></p>
-    <div class="actions">
-        <button onclick="restart()">Try Again</button>
+    <div class="start-overlay" id="startOverlay">
+        <button id="startBtn" class="start-button">Start Game</button>
+    </div>
+    <div class="pause-overlay hidden" id="pauseOverlay">
+        <div class="pause-content">
+            <h2>Game Paused</h2>
+            <button id="resumeBtn" class="start-button">Resume Game</button>
+        </div>
+    </div>
+    <div class="victory-overlay hidden" id="victoryOverlay">
+        <div class="victory-content">
+            <h2>Congratulations! 🎉</h2>
+            <p>You completed the game in:</p>
+            <p class="victory-time"></p>
+            <p class="victory-moves"></p>
+            <div class="victory-buttons">
+                <button id="playAgainBtn" class="start-button">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="stats">
+                <p class="score-text">Score: <span class="score">0</span></p>
+                <p class="timer-text">Time: <span class="timer">00:00</span></p>
+            </div>
+            <h1>Memory Card Game</h1>
+            <div class="actions">
+                <button id="pauseBtn" disabled>Pause</button>
+                <button id="restartBtn" disabled>Try Again</button>
+            </div>
+        </div>
+        <div class="grid-container"></div>
     </div>
     <script src="memoryCardGame.js"></script>
 </body>

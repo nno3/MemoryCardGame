@@ -1,33 +1,110 @@
 body {
     min-height: 100vh;
     min-width: 100vh;
-    background-color: #12181f;
+    color: #12181f;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    padding: 20px;
+    filter: blur(0px);
+    transition: filter 0.5s ease;
+}
+
+.game-container.blurred {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.start-overlay, .victory-overlay, .pause-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.start-overlay.hidden, .victory-overlay.hidden, .pause-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.start-button {
+    padding: 20px 40px;
+    font-size: 32px;
+    border-radius: 15px;
+    background-color: #27ae60;
     color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    background-color: #219a52;
+}
+
+.game-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 h1 {
     text-align: center;
     font-weight: 700;
     font-size: 50px;
+    margin: 0;
 }
 
-p {
-    text-align: center;
-    font-size: 30px;
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.score-text, .timer-text {
+    font-size: 24px;
     font-weight: bold;
+    margin: 0;
 }
 
 .actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .actions button {
     padding: 8px 16px;
-    font-size: 30px;
+    font-size: 20px;
     border-radius: 10px;
     background-color: #27ae60;
     color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actions button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.actions button:hover:not(:disabled) {
+    background-color: #219a52;
 }
 
 .grid-container {
@@ -42,7 +119,7 @@ p {
     height: calc(140px / 2 * 3);
     width: 140px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(243, 215, 144);
     position: relative;
     transform-style: preserve-3d;
     transition: all 0.5s ease-in-out;
@@ -81,4 +158,39 @@ p {
     background-position: center center;
     background-size: cover;
     backface-visibility: hidden;
+}
+
+.victory-content, .pause-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.victory-content h2, .pause-content h2 {
+    color: #27ae60;
+    font-size: 36px;
+    margin: 0 0 20px 0;
+}
+
+.victory-content p {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.victory-time, .victory-moves {
+    font-weight: bold;
+    font-size: 24px !important;
+    color: #12181f !important;
+}
+
+.victory-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
